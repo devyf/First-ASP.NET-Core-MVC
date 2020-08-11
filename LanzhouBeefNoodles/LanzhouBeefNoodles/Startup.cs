@@ -30,13 +30,14 @@ namespace LanzhouBeefNoodles
             }
 
             //使用UseMvcWithDefaultRoute与UserMvc都可以自定义初始化路由信息
-            app.UseMvcWithDefaultRoute();
-            //app.UseMvc(route => 
-            //{
-            //    //通配所有的controller和action，如果有参数的话，参数为id
-            //    route.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
-            //}
-            //);
+            //app.UseMvcWithDefaultRoute();
+            //使用自定义路由
+            app.UseMvc(route =>
+            {
+                //通配所有的controller和action，如果有参数的话，参数为id
+                route.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
+            }
+            );
 
             app.Run(async (context) =>
             {

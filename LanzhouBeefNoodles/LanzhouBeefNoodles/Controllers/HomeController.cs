@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LanzhouBeefNoodles.Controllers
 {
-    [Route("[controller]/[action]")]
+    //[Route("[controller]/[action]")]
     public class HomeController : Controller
     {
         public String Index()
