@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LanzhouBeefNoodles.Models;
+using LanzhouBeefNoodles.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LanzhouBeefNoodles.Controllers
@@ -9,9 +11,25 @@ namespace LanzhouBeefNoodles.Controllers
     //[Route("[controller]/[action]")]
     public class HomeController : Controller
     {
-        public String Index()
+        private INoodleRepository _noodleRepository;
+
+        private IFeedbackRepository _feedbackRepository;
+
+        public HomeController(INoodleRepository noodleRepository, IFeedbackRepository feedbackRepository) 
         {
-            return "Hello From Home";
+            _noodleRepository = noodleRepository;
+            _feedbackRepository = feedbackRepository;
+        }
+
+        public IActionResult Index()
+        {
+            HomeViewModel viewModel = new HomeViewModel() 
+            {
+                Noodles = _noodleRepository.GetAllNoodles().ToList(),
+                Feedbacks = _feedbackRepository.GetAllFeedbacks().ToList()
+            };
+
+            return View(viewModel);
         }
 
         public String About()
