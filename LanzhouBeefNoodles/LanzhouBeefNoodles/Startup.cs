@@ -50,6 +50,9 @@ namespace LanzhouBeefNoodles
             //加载静态文件的中间件--会检测ccs样式类文件，避免页面输出异常
             app.UseStaticFiles();
 
+            //身份认证的中间件
+            app.UseAuthentication();
+
             //使用UseMvcWithDefaultRoute与UserMvc都可以自定义初始化路由信息
             //app.UseMvcWithDefaultRoute();
             //使用自定义路由
